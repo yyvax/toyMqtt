@@ -1,8 +1,5 @@
 package com.yyvax.iot.tymqtt.broker.server;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -29,12 +26,10 @@ import io.netty.channel.socket.SocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLEngine;
 
@@ -93,30 +88,23 @@ public class BrokerServer {
         LOGGER.info("Broker shut down successfully.");
     }
 
-    private void setSslContext() {
-        String keyStore = "mysslstore.jks";
-        String keyStoreType = "jks";
+    private void setSslContext() throws Exception {
+        KeyStore ks = KeyStore.getInstance("PKCS12");
         String password = "123456";
-        InputStream inputStream = null;
+        InputStream inputStream = BrokerServer.class.getClassLoader().getResourceAsStream("keystore/server.pfx");
         try {
-            inputStream = new FileInputStream(BrokerServer.class.getClassLoader().getResource(keyStore).getFile());
-        } catch (FileNotFoundException e) {
-            LOGGER.error("Can't load cert file.");
-        }
-        try {
-            KeyStore ks = KeyStore.getInstance(keyStoreType);
             ks.load(inputStream, password.toCharArray());
             String algorithm = "SunX509";
             KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(algorithm);
             keyManagerFactory.init(ks, password.toCharArray());
             sslContext = SslContextBuilder.forServer(keyManagerFactory).clientAuth(ClientAuth.NONE).build();
         } catch (KeyStoreException e) {
-            LOGGER.error("Cannot get keystore type {}", keyStoreType);
+            LOGGER.error("Cannot get keystore type PKCS12");
         } catch (IOException e) {
-            LOGGER.error("Cannot load the keystore file.",e);
+            LOGGER.error("Cannot load the keystore file.", e);
         } catch (CertificateException e) {
-            LOGGER.error("Cannot get the certificate.",e);
-        }  catch (NoSuchAlgorithmException e) {
+            LOGGER.error("Cannot get the certificate.", e);
+        } catch (NoSuchAlgorithmException e) {
             LOGGER.error("Something wrong with the SSL algorithm.", e);
         } catch (UnrecoverableKeyException e) {
             LOGGER.error("KeyManagerFactory cannot init.");
