@@ -1,5 +1,16 @@
 package com.yyvax.iot.tymqtt.broker.server;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+
 import com.yyvax.iot.tymqtt.broker.config.BrokerConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -9,17 +20,22 @@ import io.netty.handler.codec.mqtt.MqttDecoder;
 import io.netty.handler.codec.mqtt.MqttEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.ssl.ClientAuth;
 import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.channel.socket.SocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLEngine;
 
 @Component
@@ -38,13 +54,15 @@ public class BrokerServer {
     private SslContext sslContext;
 
     @PostConstruct
-    public void start() throws InterruptedException {
+    public void start() throws Exception {
         LOGGER.info("Broker started...");
         LOGGER.info("id: {}", brokerConfig.getId());
         LOGGER.info("host: {}", brokerConfig.getHost());
         LOGGER.info("host: {}", brokerConfig.getPort());
         bossGroup = new NioEventLoopGroup();
         workerGroup = new NioEventLoopGroup();
+        // sslContext init
+        setSslContext();
         // bootstrap
         ServerBootstrap sb = new ServerBootstrap().group(bossGroup, workerGroup);
         sb.channel(NioServerSocketChannel.class)
@@ -53,18 +71,17 @@ public class BrokerServer {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline channelPipeline = socketChannel.pipeline();
-                        // Netty提供的心跳检测
+                        // heart beat
                         channelPipeline.addFirst("idle",
                                 new IdleStateHandler(0, 0, 60));
-                        // Netty提供的SSL处理
                         SSLEngine sslEngine = sslContext.newEngine(socketChannel.alloc());
-                        sslEngine.setUseClientMode(false);        // 服务端模式
-                        sslEngine.setNeedClientAuth(false);        // 不需要验证客户端
+                        sslEngine.setUseClientMode(false);
+                        sslEngine.setNeedClientAuth(false);
                         channelPipeline.addLast("ssl", new SslHandler(sslEngine));
                         channelPipeline.addLast("decoder", new MqttDecoder());
                         channelPipeline.addLast("encoder", MqttEncoder.INSTANCE);
                     }
-                });
+                }).option(ChannelOption.SO_BACKLOG, 1024);
         channel = sb.bind(brokerConfig.getPort()).sync().channel();
     }
 
@@ -76,5 +93,34 @@ public class BrokerServer {
         LOGGER.info("Broker shut down successfully.");
     }
 
+    private void setSslContext() {
+        String keyStore = "mysslstore.jks";
+        String keyStoreType = "jks";
+        String password = "123456";
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(BrokerServer.class.getClassLoader().getResource(keyStore).getFile());
+        } catch (FileNotFoundException e) {
+            LOGGER.error("Can't load cert file.");
+        }
+        try {
+            KeyStore ks = KeyStore.getInstance(keyStoreType);
+            ks.load(inputStream, password.toCharArray());
+            String algorithm = "SunX509";
+            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(algorithm);
+            keyManagerFactory.init(ks, password.toCharArray());
+            sslContext = SslContextBuilder.forServer(keyManagerFactory).clientAuth(ClientAuth.NONE).build();
+        } catch (KeyStoreException e) {
+            LOGGER.error("Cannot get keystore type {}", keyStoreType);
+        } catch (IOException e) {
+            LOGGER.error("Cannot load the keystore file.",e);
+        } catch (CertificateException e) {
+            LOGGER.error("Cannot get the certificate.",e);
+        }  catch (NoSuchAlgorithmException e) {
+            LOGGER.error("Something wrong with the SSL algorithm.", e);
+        } catch (UnrecoverableKeyException e) {
+            LOGGER.error("KeyManagerFactory cannot init.");
+        }
+    }
 
 }
