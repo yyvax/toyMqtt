@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ada187b8-197c-4cc0-8c34-ee1a8bf6e832" name="Default Changelist" comment="" />
+    <list default="true" id="ada187b8-197c-4cc0-8c34-ee1a8bf6e832" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com.yyvax.iot.tymqtt.common/SnowFlake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Connect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Processor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/config/BrokerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/config/BrokerConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +66,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -127,7 +144,8 @@
       <workItem from="1564065036315" duration="313000" />
       <workItem from="1564065389811" duration="215000" />
       <workItem from="1564065631037" duration="392000" />
-      <workItem from="1564066095650" duration="1000000" />
+      <workItem from="1564066095650" duration="1259000" />
+      <workItem from="1564153704712" duration="5602000" />
     </task>
     <servers />
   </component>

@@ -5,14 +5,25 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.mqtt.MqttConnectMessage;
 import io.netty.handler.codec.mqtt.MqttMessage;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BrokerHandler extends SimpleChannelInboundHandler<MqttMessage> {
 
-    @Autowired
-    Processor mqttProcessor;
+    private static final Logger LOGGER = LoggerFactory.getLogger(BrokerHandler.class);
+
+    private Processor mqttProcessor;
+
+    public BrokerHandler(Processor processor) {
+        mqttProcessor = processor;
+    }
 
     protected void channelRead0(ChannelHandlerContext ctx, MqttMessage msg) throws Exception {
+        if (mqttProcessor == null) {
+            LOGGER.error("Mqtt Processor not initialized.");
+        }
          switch (msg.fixedHeader().messageType()) {
              case CONNECT:
                  mqttProcessor.connect().processConnect(ctx.channel(), (MqttConnectMessage) msg);

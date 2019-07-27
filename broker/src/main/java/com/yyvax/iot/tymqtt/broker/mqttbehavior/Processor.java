@@ -1,13 +1,18 @@
 package com.yyvax.iot.tymqtt.broker.mqttbehavior;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Processor {
 
-    Connect connect;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Processor.class);
+    private Connect connect;
 
     public Connect connect() {
-        return new Connect();
+        connect = new Connect();
+        LOGGER.info("Establish connection...");
+        return connect;
     }
 }

@@ -11,6 +11,7 @@
     <modules>
         <module>broker</module>
         <module>auth</module>
+        <module>common</module>
     </modules>
 
     <properties>

@@ -9,6 +9,8 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
 import com.yyvax.iot.tymqtt.broker.config.BrokerConfig;
+import com.yyvax.iot.tymqtt.broker.handler.BrokerHandler;
+import com.yyvax.iot.tymqtt.broker.mqttbehavior.Processor;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -40,6 +42,9 @@ public class BrokerServer {
     @Autowired
     private BrokerConfig brokerConfig;
 
+    @Autowired
+    private Processor processor;
+
     private EventLoopGroup bossGroup;
 
     private EventLoopGroup workerGroup;
@@ -69,12 +74,13 @@ public class BrokerServer {
                         // heart beat
                         channelPipeline.addFirst("idle",
                                 new IdleStateHandler(0, 0, 60));
-                        SSLEngine sslEngine = sslContext.newEngine(socketChannel.alloc());
-                        sslEngine.setUseClientMode(false);
-                        sslEngine.setNeedClientAuth(false);
-                        channelPipeline.addLast("ssl", new SslHandler(sslEngine));
+//                        SSLEngine sslEngine = sslContext.newEngine(socketChannel.alloc());
+//                        sslEngine.setUseClientMode(false);
+//                        sslEngine.setNeedClientAuth(false);
+//                        channelPipeline.addLast("ssl", new SslHandler(sslEngine));
                         channelPipeline.addLast("decoder", new MqttDecoder());
                         channelPipeline.addLast("encoder", MqttEncoder.INSTANCE);
+                        channelPipeline.addLast("broker", new BrokerHandler(processor));
                     }
                 }).option(ChannelOption.SO_BACKLOG, 1024);
         channel = sb.bind(brokerConfig.getPort()).sync().channel();
