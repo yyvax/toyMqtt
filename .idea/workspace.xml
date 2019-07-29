@@ -2,7 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ada187b8-197c-4cc0-8c34-ee1a8bf6e832" name="Default Changelist" comment="finished protocol check in connect.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/Connect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/Publish.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/util/ClientUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/broker/src/test/java/com/yyvax/iot/toymqtt/broker/ClientUtilTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/target/classes/META-INF/auth.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/target/classes/com/yyvax/iot/tymqtt/auth/AuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/target/classes/com/yyvax/iot/tymqtt/auth/IAuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/broker/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Connect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/Processor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/ServerMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/config/BrokerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/mqttbehavior/Connect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/mqttbehavior/Processor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/keystore/server.pfx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/mysslstore.jks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/broker/target/classes/yyvax.com.cert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,8 +212,17 @@
       <workItem from="1564065389811" duration="215000" />
       <workItem from="1564065631037" duration="392000" />
       <workItem from="1564066095650" duration="1259000" />
-      <workItem from="1564153704712" duration="16399000" />
+      <workItem from="1564153704712" duration="20050000" />
+      <workItem from="1564329127640" duration="1267000" />
     </task>
+    <task id="LOCAL-00001" summary="add gitignore file.">
+      <created>1564241733621</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1564241733621</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +257,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finished protocol check in connect." />
-    <option name="LAST_COMMIT_MESSAGE" value="finished protocol check in connect." />
+    <MESSAGE value="add gitignore file." />
+    <option name="LAST_COMMIT_MESSAGE" value="add gitignore file." />
   </component>
   <component name="masterDetails">
     <states>
