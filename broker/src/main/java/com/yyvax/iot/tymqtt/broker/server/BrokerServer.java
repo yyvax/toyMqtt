@@ -10,7 +10,7 @@ import java.security.cert.CertificateException;
 
 import com.yyvax.iot.tymqtt.broker.config.BrokerConfig;
 import com.yyvax.iot.tymqtt.broker.handler.BrokerHandler;
-import com.yyvax.iot.tymqtt.broker.mqttbehavior.Processor;
+import com.yyvax.iot.tymqtt.broker.behavior.Processor;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -22,7 +22,6 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.ClientAuth;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
-import io.netty.handler.ssl.SslHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.channel.socket.SocketChannel;
 import org.slf4j.Logger;
@@ -33,7 +32,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLEngine;
 
 @Component
 public class BrokerServer {
@@ -69,7 +67,7 @@ public class BrokerServer {
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
-                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                    protected void initChannel(SocketChannel socketChannel) {
                         ChannelPipeline channelPipeline = socketChannel.pipeline();
                         // heart beat
                         channelPipeline.addFirst("idle",

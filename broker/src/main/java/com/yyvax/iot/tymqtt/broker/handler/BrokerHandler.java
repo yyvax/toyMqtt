@@ -1,6 +1,6 @@
 package com.yyvax.iot.tymqtt.broker.handler;
 
-import com.yyvax.iot.tymqtt.broker.mqttbehavior.Processor;
+import com.yyvax.iot.tymqtt.broker.behavior.Processor;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.mqtt.MqttConnectMessage;
@@ -20,7 +20,7 @@ public class BrokerHandler extends SimpleChannelInboundHandler<MqttMessage> {
         mqttProcessor = processor;
     }
 
-    protected void channelRead0(ChannelHandlerContext ctx, MqttMessage msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, MqttMessage msg) {
         if (mqttProcessor == null) {
             LOGGER.error("Mqtt Processor not initialized.");
         }

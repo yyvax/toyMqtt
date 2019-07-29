@@ -1,4 +1,4 @@
-package com.yyvax.iot.tymqtt.broker.mqttbehavior;
+package com.yyvax.iot.tymqtt.broker.behavior;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

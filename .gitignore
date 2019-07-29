@@ -1,0 +1,29 @@
+# Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Project Files #
+*/target
+target/
+
+# Idea Project #
+*.iml
+.idea
+/.idea
+
+# Eclipse Project #
+.project
+.settings/
+.classpath
+
+# Some Local Files #
+*.pid
+*.log
+.DS_Store
+/broker/target/
+/auth/target/
+/common/target/

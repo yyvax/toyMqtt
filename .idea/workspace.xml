@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ada187b8-197c-4cc0-8c34-ee1a8bf6e832" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/com.yyvax.iot.tymqtt.common/SnowFlake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Connect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/mqttbehavior/Processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/config/BrokerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/config/BrokerConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/broker/target/classes/com/yyvax/iot/tymqtt/broker/server/BrokerServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="ada187b8-197c-4cc0-8c34-ee1a8bf6e832" name="Default Changelist" comment="finished protocol check in connect.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,10 +54,12 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/broker/src/main/resources" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/broker/src" />
       <recent name="$PROJECT_DIR$/broker/src/main/resources" />
     </key>
   </component>
@@ -89,15 +76,65 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.ServerMain">
-    <configuration name="PasswordUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.yyvax.iot.tymqtt.auth.PasswordUtil" />
-      <module name="auth" />
+    <configuration name="ClientUtilTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="broker" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.yyvax.iot.tymqtt.auth.*" />
+          <option name="PATTERN" value="com.yyvax.iot.toymqtt.broker.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.yyvax.iot.toymqtt.broker" />
+      <option name="MAIN_CLASS_NAME" value="com.yyvax.iot.toymqtt.broker.ClientUtilTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientUtilTest.testInvalidClientId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="broker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yyvax.iot.toymqtt.broker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yyvax.iot.toymqtt.broker" />
+      <option name="MAIN_CLASS_NAME" value="com.yyvax.iot.toymqtt.broker.ClientUtilTest" />
+      <option name="METHOD_NAME" value="testInvalidClientId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientUtilTest.testNullClientId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="broker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yyvax.iot.toymqtt.broker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yyvax.iot.toymqtt.broker" />
+      <option name="MAIN_CLASS_NAME" value="com.yyvax.iot.toymqtt.broker.ClientUtilTest" />
+      <option name="METHOD_NAME" value="testNullClientId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientUtilTest.testZeroByteClientId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="broker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yyvax.iot.toymqtt.broker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yyvax.iot.toymqtt.broker" />
+      <option name="MAIN_CLASS_NAME" value="com.yyvax.iot.toymqtt.broker.ClientUtilTest" />
+      <option name="METHOD_NAME" value="testZeroByteClientId" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -118,7 +155,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.ServerMain" />
-        <item itemvalue="Application.PasswordUtil" />
+        <item itemvalue="JUnit.ClientUtilTest.testZeroByteClientId" />
+        <item itemvalue="JUnit.ClientUtilTest.testNullClientId" />
+        <item itemvalue="JUnit.ClientUtilTest" />
+        <item itemvalue="JUnit.ClientUtilTest.testInvalidClientId" />
       </list>
     </recent_temporary>
   </component>
@@ -145,18 +185,9 @@
       <workItem from="1564065389811" duration="215000" />
       <workItem from="1564065631037" duration="392000" />
       <workItem from="1564066095650" duration="1259000" />
-      <workItem from="1564153704712" duration="5602000" />
+      <workItem from="1564153704712" duration="16399000" />
     </task>
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -187,6 +218,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="finished protocol check in connect." />
+    <option name="LAST_COMMIT_MESSAGE" value="finished protocol check in connect." />
   </component>
   <component name="masterDetails">
     <states>
