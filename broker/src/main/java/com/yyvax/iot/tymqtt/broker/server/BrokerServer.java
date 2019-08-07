@@ -70,8 +70,8 @@ public class BrokerServer {
                     protected void initChannel(SocketChannel socketChannel) {
                         ChannelPipeline channelPipeline = socketChannel.pipeline();
                         // heart beat
-                        channelPipeline.addFirst("idle",
-                                new IdleStateHandler(0, 0, 60));
+//                        channelPipeline.addFirst("idle",
+//                                new IdleStateHandler(0, 0, 60));
 //                        SSLEngine sslEngine = sslContext.newEngine(socketChannel.alloc());
 //                        sslEngine.setUseClientMode(false);
 //                        sslEngine.setNeedClientAuth(false);

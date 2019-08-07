@@ -24,6 +24,8 @@ public class Processor {
 
     private Subscribe subscribe;
 
+    private PingReq pingReq;
+
     public Connect connect() {
         connect = new Connect(clientSessionStore);
         LOGGER.info("Establish connection...");
@@ -40,5 +42,11 @@ public class Processor {
         subscribe = new Subscribe(subscribeService);
         LOGGER.info("Start subscribe");
         return subscribe;
+    }
+
+    public PingReq pingReq() {
+        pingReq = new PingReq();
+        LOGGER.info("Received ping.");
+        return pingReq;
     }
 }
