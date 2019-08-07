@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ada187b8-197c-4cc0-8c34-ee1a8bf6e832" name="Default Changelist" comment="finished protocol check in connect.">
-      <change afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/PingReq.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/Processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/Publish.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/behavior/Publish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/handler/BrokerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/broker/src/main/java/com/yyvax/iot/tymqtt/broker/server/BrokerServer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +189,7 @@
       <workItem from="1564652154577" duration="785000" />
       <workItem from="1564907888147" duration="243000" />
       <workItem from="1564908317634" duration="184000" />
-      <workItem from="1564908524947" duration="17653000" />
+      <workItem from="1564908524947" duration="18096000" />
     </task>
     <task id="LOCAL-00001" summary="add gitignore file.">
       <created>1564241733621</created>
