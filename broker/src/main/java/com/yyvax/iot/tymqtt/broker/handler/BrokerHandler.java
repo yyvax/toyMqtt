@@ -6,8 +6,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.mqtt.MqttConnectMessage;
 import io.netty.handler.codec.mqtt.MqttMessage;
 import io.netty.handler.codec.mqtt.MqttPublishMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.netty.handler.codec.mqtt.MqttSubscribeMessage;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,6 +18,7 @@ public class BrokerHandler extends SimpleChannelInboundHandler<MqttMessage> {
         mqttProcessor = processor;
     }
 
+    @Override
     protected void channelRead0(ChannelHandlerContext ctx, MqttMessage msg) {
          switch (msg.fixedHeader().messageType()) {
              case CONNECT:
@@ -38,6 +38,7 @@ public class BrokerHandler extends SimpleChannelInboundHandler<MqttMessage> {
              case PUBCOMP:
                  break;
              case SUBSCRIBE:
+                 mqttProcessor.subscribe().processSubscribe(ctx.channel(), (MqttSubscribeMessage) msg);
                  break;
              case SUBACK:
                  break;

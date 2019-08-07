@@ -1,17 +1,28 @@
 package com.yyvax.iot.tymqtt.broker.behavior;
 
+import com.yyvax.iot.tymqtt.broker.persistence.ClientSessionStore;
+import com.yyvax.iot.tymqtt.broker.persistence.subscribe.SubscribeService;
+import com.yyvax.iot.tymqtt.broker.persistence.subscribe.Subscription;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.mqtt.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class Publish {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Publish.class);
 
-    public Publish() {
+    private SubscribeService subscribeService;
 
+    private ClientSessionStore clientSessionStore;
+
+    public Publish(SubscribeService subscribeService, ClientSessionStore clientSessionStore) {
+        this.subscribeService = subscribeService;
+        this.clientSessionStore = clientSessionStore;
     }
 
     public void processPublish(Channel channel, MqttPublishMessage publishMessage) {
@@ -19,7 +30,7 @@ public class Publish {
         switch (publishMessage.fixedHeader().qosLevel()) {
             case AT_MOST_ONCE:
                 ByteBuf payload = publishMessage.payload();
-
+                sendPublishMsg(publishMessage.variableHeader().topicName(), payload, publishMessage.fixedHeader().qosLevel());
                 break;
             case AT_LEAST_ONCE:
                 break;
@@ -33,7 +44,21 @@ public class Publish {
 
     }
 
-    private void sendPublishMsg() {
+    private void sendPublishMsg(String topic, ByteBuf payload, MqttQoS qoS) {
+        List<Subscription> subscriptionClients = subscribeService.getSubscriptions(topic);
+        subscriptionClients.forEach(subscriptionClient -> {
+            if (qoS == MqttQoS.AT_MOST_ONCE) {
+                MqttPublishMessage publishMessage = (MqttPublishMessage) MqttMessageFactory.newMessage(
+                        new MqttFixedHeader(MqttMessageType.PUBLISH, false, MqttQoS.AT_MOST_ONCE, false, 0),
+                        new MqttPublishVariableHeader(topic, 0),
+                        payload
+                );
+                LOGGER.info("client id: {}", subscriptionClient);
+                Channel channel = clientSessionStore.get(subscriptionClient.getClientId()).getChannel();
+                channel.writeAndFlush(publishMessage.retain());
+                LOGGER.info("publish successfully! topic '{}'", topic);
+            }
+        });
 
     }
 

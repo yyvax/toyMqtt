@@ -1,17 +1,22 @@
 package com.yyvax.iot.tymqtt.broker.behavior;
 
+import com.yyvax.iot.tymqtt.broker.persistence.ClientSession;
+import com.yyvax.iot.tymqtt.broker.persistence.ClientSessionStore;
 import com.yyvax.iot.tymqtt.broker.util.ClientUtil;
 import com.yyvax.iot.tymqtt.common.SnowFlake;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.mqtt.*;
+import io.netty.util.AttributeKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Connect {
     private static final Logger LOGGER = LoggerFactory.getLogger(Connect.class);
 
-    public Connect() {
+    private ClientSessionStore clientSessionStore;
 
+    public Connect(ClientSessionStore clientSessionStore) {
+        this.clientSessionStore = clientSessionStore;
     }
 
     public void processConnect(Channel channel, MqttConnectMessage connectMessage) {
@@ -56,9 +61,12 @@ public class Connect {
         if (connectMessage.variableHeader().hasUserName()) {
             // TODO: username auth
         }
+        channel.attr(AttributeKey.valueOf("clientId")).set(connectMessage.payload().clientIdentifier());
+        ClientSession clientSession = new ClientSession(clientId, channel);
+        clientSessionStore.put(clientId, clientSession);
         // return connAck msg
         write(channel, MqttConnectReturnCode.CONNECTION_ACCEPTED, sessionPresent);
-        LOGGER.info("Connected.");
+        LOGGER.info("Client {} connected.", clientSessionStore.get(clientId).getClientId());
     }
 
     private void write(Channel channel, MqttConnectReturnCode connectReturnCode) {
