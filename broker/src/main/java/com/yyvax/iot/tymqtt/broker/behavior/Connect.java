@@ -1,7 +1,7 @@
 package com.yyvax.iot.tymqtt.broker.behavior;
 
-import com.yyvax.iot.tymqtt.broker.persistence.ClientSession;
-import com.yyvax.iot.tymqtt.broker.persistence.ClientSessionStore;
+import com.yyvax.iot.tymqtt.broker.persistence.session.ClientSession;
+import com.yyvax.iot.tymqtt.broker.persistence.session.ClientSessionStore;
 import com.yyvax.iot.tymqtt.broker.util.ClientUtil;
 import com.yyvax.iot.tymqtt.common.SnowFlake;
 import io.netty.channel.Channel;
@@ -62,7 +62,7 @@ public class Connect {
             // TODO: username auth
         }
         channel.attr(AttributeKey.valueOf("clientId")).set(connectMessage.payload().clientIdentifier());
-        ClientSession clientSession = new ClientSession(clientId, channel);
+        ClientSession clientSession = new ClientSession(clientId, channel, cleanSession);
         clientSessionStore.put(clientId, clientSession);
         // return connAck msg
         write(channel, MqttConnectReturnCode.CONNECTION_ACCEPTED, sessionPresent);

@@ -45,9 +45,10 @@ public class BrokerHandler extends SimpleChannelInboundHandler<MqttMessage> {
              case UNSUBACK:
                  break;
              case PINGREQ:
-                mqttProcessor.pingReq().processPingReq(ctx.channel());
+                 mqttProcessor.pingReq().processPingReq(ctx.channel());
                  break;
              case DISCONNECT:
+                 mqttProcessor.disconnect().processDisconnect(ctx.channel());
                  break;
              default:
                  break;

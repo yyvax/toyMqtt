@@ -1,4 +1,4 @@
-package com.yyvax.iot.tymqtt.broker.persistence;
+package com.yyvax.iot.tymqtt.broker.persistence.session;
 
 import io.netty.channel.Channel;
 import lombok.Data;
@@ -10,9 +10,13 @@ public class ClientSession {
 
     private Channel channel;
 
-    public ClientSession(String clientId, Channel channel) {
+    private boolean cleanSession;
+
+    public ClientSession(String clientId, Channel channel, boolean cleanSession) {
         this.channel = channel;
         this.clientId = clientId;
+        this.cleanSession = cleanSession;
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.yyvax.iot.tymqtt.broker.persistence;
+package com.yyvax.iot.tymqtt.broker.persistence.session;
 
 import org.springframework.stereotype.Component;
 
@@ -16,5 +16,9 @@ public class ClientSessionStore {
 
     public ClientSession get(String clientId) {
         return sessionMap.get(clientId);
+    }
+
+    public void remove(String clientId) {
+        sessionMap.remove(clientId);
     }
 }

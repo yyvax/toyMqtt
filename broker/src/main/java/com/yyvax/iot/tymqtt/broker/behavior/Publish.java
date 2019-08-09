@@ -1,6 +1,6 @@
 package com.yyvax.iot.tymqtt.broker.behavior;
 
-import com.yyvax.iot.tymqtt.broker.persistence.ClientSessionStore;
+import com.yyvax.iot.tymqtt.broker.persistence.session.ClientSessionStore;
 import com.yyvax.iot.tymqtt.broker.persistence.subscribe.SubscribeService;
 import com.yyvax.iot.tymqtt.broker.persistence.subscribe.Subscription;
 import io.netty.buffer.ByteBuf;

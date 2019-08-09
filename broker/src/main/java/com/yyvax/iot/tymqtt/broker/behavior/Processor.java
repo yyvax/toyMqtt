@@ -1,6 +1,6 @@
 package com.yyvax.iot.tymqtt.broker.behavior;
 
-import com.yyvax.iot.tymqtt.broker.persistence.ClientSessionStore;
+import com.yyvax.iot.tymqtt.broker.persistence.session.ClientSessionStore;
 import com.yyvax.iot.tymqtt.broker.persistence.subscribe.SubscribeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,42 +18,38 @@ public class Processor {
     @Autowired
     private ClientSessionStore clientSessionStore;
 
-    private Connect connect;
-
-    private Publish publish;
-
-    private Subscribe subscribe;
-
-    private Unsubscribe unsubscribe;
-
-    private PingReq pingReq;
-
     public Connect connect() {
-        connect = new Connect(clientSessionStore);
+        Connect connect = new Connect(clientSessionStore);
         LOGGER.info("Establish connection...");
         return connect;
     }
 
+    public Disconnect disconnect() {
+        Disconnect disconnect = new Disconnect(clientSessionStore, subscribeService);
+        LOGGER.info("Start disconnecting...");
+        return disconnect;
+    }
+
     public Publish publish() {
-        publish = new Publish(subscribeService, clientSessionStore);
+        Publish publish = new Publish(subscribeService, clientSessionStore);
         LOGGER.info("Start publishing...");
         return publish;
     }
 
     public Subscribe subscribe() {
-        subscribe = new Subscribe(subscribeService);
-        LOGGER.info("Start subscribe...");
+        Subscribe subscribe = new Subscribe(subscribeService);
+        LOGGER.info("Start subscribing...");
         return subscribe;
     }
 
     public Unsubscribe unsubscribe() {
-        unsubscribe = new Unsubscribe(subscribeService);
-        LOGGER.info("Start unsubscribe...");
+        Unsubscribe unsubscribe = new Unsubscribe(subscribeService);
+        LOGGER.info("Start unsubscribing...");
         return unsubscribe;
     }
 
     public PingReq pingReq() {
-        pingReq = new PingReq();
+        PingReq pingReq = new PingReq();
         LOGGER.info("Received ping...");
         return pingReq;
     }
