@@ -1,7 +1,6 @@
 package com.yyvax.iot.tymqtt.broker.persistence.subscribe;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public interface SubscribeService {
     /**
@@ -9,8 +8,17 @@ public interface SubscribeService {
      */
     void put(String topicFilter, Subscription subscription);
 
+    /**
+     * Remove specific topic by client
+     * @param clientId client id
+     * @param topicFilter topic
+     */
     void remove(String clientId, String topicFilter);
 
+    /**
+     * When disconnect with clean session, unsub all the topics
+     * @param clientId client id
+     */
     void removeByClient(String clientId);
 
     /**

@@ -3,10 +3,7 @@ package com.yyvax.iot.tymqtt.broker.handler;
 import com.yyvax.iot.tymqtt.broker.behavior.Processor;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.mqtt.MqttConnectMessage;
-import io.netty.handler.codec.mqtt.MqttMessage;
-import io.netty.handler.codec.mqtt.MqttPublishMessage;
-import io.netty.handler.codec.mqtt.MqttSubscribeMessage;
+import io.netty.handler.codec.mqtt.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -43,6 +40,7 @@ public class BrokerHandler extends SimpleChannelInboundHandler<MqttMessage> {
              case SUBACK:
                  break;
              case UNSUBSCRIBE:
+                 mqttProcessor.unsubscribe().processUnsubscribe(ctx.channel(), (MqttUnsubscribeMessage) msg);
                  break;
              case UNSUBACK:
                  break;

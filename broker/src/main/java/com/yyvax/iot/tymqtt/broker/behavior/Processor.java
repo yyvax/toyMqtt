@@ -24,6 +24,8 @@ public class Processor {
 
     private Subscribe subscribe;
 
+    private Unsubscribe unsubscribe;
+
     private PingReq pingReq;
 
     public Connect connect() {
@@ -34,19 +36,25 @@ public class Processor {
 
     public Publish publish() {
         publish = new Publish(subscribeService, clientSessionStore);
-        LOGGER.info("Start publishing");
+        LOGGER.info("Start publishing...");
         return publish;
     }
 
     public Subscribe subscribe() {
         subscribe = new Subscribe(subscribeService);
-        LOGGER.info("Start subscribe");
+        LOGGER.info("Start subscribe...");
         return subscribe;
+    }
+
+    public Unsubscribe unsubscribe() {
+        unsubscribe = new Unsubscribe(subscribeService);
+        LOGGER.info("Start unsubscribe...");
+        return unsubscribe;
     }
 
     public PingReq pingReq() {
         pingReq = new PingReq();
-        LOGGER.info("Received ping.");
+        LOGGER.info("Received ping...");
         return pingReq;
     }
 }
